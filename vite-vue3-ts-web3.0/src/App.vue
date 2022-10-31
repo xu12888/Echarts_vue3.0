@@ -17,6 +17,10 @@ const PropsEmitRef = ref();
 onMounted(() => {
   //console.log(PropsEmitRef.value.name,PropsEmitRef.value.age());
 })
+
+const mode = import.meta.env
+console.log(mode);
+
 </script>
 
 <template>

@@ -8,14 +8,14 @@ export default ({ command, mode }) => {
     plugins: [vue()],
     server: {
       host: "127.0.0.1",
-      port: 3000,
+      port: Number(loadEnv(mode, process.cwd()).VITE_APP_PORT), // todo端口号配置在.env文件中
       strictPort: true, // ? 端口被占用直接退出
       https: false, // ? 默认用http
       open: true, // todo在开发服务器启动时自动在浏览器中打开应用程序
       proxy: {
         //代理配置
         api: {
-          target: loadEnv(mode, process.cwd()).VITE_APP_BASE_URL,
+          target: loadEnv(mode, process.cwd()).VITE_APP_BASE_URL, // todo端口号配置在.env文件中
           changeOrigin: true, // !跨域配置
           rewrite: (path) => path.replace(/^\/api/, ""),
         },
@@ -49,3 +49,4 @@ export default ({ command, mode }) => {
     },
   });
 };
+
