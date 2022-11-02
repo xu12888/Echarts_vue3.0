@@ -1,32 +1,45 @@
-<script setup lang="ts">
-import { useStore } from './store'
-import TextproposEmit from './components/index.vue';
-import { onMounted, ref } from 'vue';
-
-const store = useStore();
-console.log(store.getters.getName);
-
-
-const msg = ref('我是父级传递过来的值');
-const handleChange = (params: string) => {
-  //console.log(params);
-
-}
-
-const PropsEmitRef = ref();
-onMounted(() => {
-  //console.log(PropsEmitRef.value.name,PropsEmitRef.value.age());
-})
-
-const mode = import.meta.env
-console.log(mode);
-
-</script>
-
 <template>
-  <TextproposEmit ref="PropsEmitRef" :msg="msg" @on-change="handleChange"></TextproposEmit>
+  <div class="aaa">
+    <el-menu :default-active="activeIndex2" class="el-menu-demo" mode="horizontal" background-color="red"
+      text-color="#fff" active-text-color="#ffd04b" @select="handleSelect">
+      <el-menu-item index="1">Processing Center</el-menu-item>
+      <el-sub-menu index="2">
+        <template #title>Workspace</template>
+        <el-menu-item index="2-1">item one</el-menu-item>
+        <el-menu-item index="2-2">item two</el-menu-item>
+        <el-menu-item index="2-3">item three</el-menu-item>
+        <el-sub-menu index="2-4">
+          <template #title>item four</template>
+          <el-menu-item index="2-4-1">item one</el-menu-item>
+          <el-menu-item index="2-4-2">item two</el-menu-item>
+          <el-menu-item index="2-4-3">item three</el-menu-item>
+        </el-sub-menu>
+      </el-sub-menu>
+      <el-menu-item index="3">ddddd</el-menu-item>
+      <el-menu-item index="4">Orders</el-menu-item>
+    </el-menu>
+  </div>
 </template>
 
-<style scoped>
+<script lang="ts" setup>
+import { ref } from 'vue'
 
+const activeIndex2 = ref('1')
+const handleSelect = (key: string, keyPath: string[]) => {
+  console.log(key, keyPath)
+}
+</script>
+<script setup lang="ts">
+</script>
+<style scoped>
+.aaa {
+  width: 100%;
+  height: 100%;
+  background-color: black;
+}
+
+.el-menu--horizontal {
+  border: none;
+  border-radius: 10px;
+}
 </style>
